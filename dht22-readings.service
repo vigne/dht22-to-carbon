@@ -1,0 +1,11 @@
+[Unit]
+Description=DHT22 readings
+
+[Service]
+Type=simple
+PidFile=/var/run/dht22-readings.pid
+ExecStart=/usr/local/bin/dht22-readings
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

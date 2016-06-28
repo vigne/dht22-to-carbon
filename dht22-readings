@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PREFIX=sensors.DHT22.bedroom
+USB_DEV=/dev/ttyUSB0
+
+GRAPHITE_HOST=gyro
+GRAPHITE_PORT=2003
+
+echo -e "\tINFO\tListening on device: ${USB_DEV}"
+echo -e "\tINFO\tCarbon server: ${GRAPHITE_HOST} on port ${GRAPHITE_PORT}"
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    echo "$PREFIX.$line $(date +%s)" | nc -q0 ${GRAPHITE_HOST} ${GRAPHITE_PORT}
+    if [[ $line == *"Failed"* ]]
+    then
+      echo -e "\tFAIL\tLine: ${line} $(date +%s)"
+    fi
+done < "$USB_DEV"
