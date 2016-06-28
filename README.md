@@ -16,4 +16,4 @@ A log file is kept in /var/log/dht22.log
 ## Install
 * Copy service file to /etc/systemd/system/dht22-readings.service
 * Copy bash file to  /usr/local/bin/dht22-readings
-
+* Use Arduino IDE to compile and upload sketch (needs [DHTlib](https://github.com/adafruit/DHT-sensor-library) to be available)
